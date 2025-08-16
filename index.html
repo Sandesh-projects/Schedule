@@ -40,27 +40,43 @@
 
         <!-- Progress Overview -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div class="bg-white rounded-lg shadow-md p-4">
+            <!-- DSA Card -->
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col">
                 <h3 class="text-sm font-semibold text-gray-600 mb-2">DSA Problems</h3>
-                <div class="text-2xl font-bold text-primary" id="dsaProgress">0/56</div>
+                <div class="flex-grow flex items-center justify-between">
+                    <button onclick="decrement('dsa')" class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300">-</button>
+                    <div class="text-2xl font-bold text-primary" id="dsaProgress">0/150</div>
+                    <button onclick="increment('dsa')" class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300">+</button>
+                </div>
                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                     <div class="bg-primary h-2 rounded-full" id="dsaProgressBar" style="width: 0%"></div>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4">
+            <!-- SQL Card -->
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col">
                 <h3 class="text-sm font-semibold text-gray-600 mb-2">SQL Sprint</h3>
-                <div class="text-2xl font-bold text-secondary" id="sqlProgress">0/50</div>
+                 <div class="flex-grow flex items-center justify-between">
+                    <button onclick="decrement('sql')" class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300">-</button>
+                    <div class="text-2xl font-bold text-secondary" id="sqlProgress">0/50</div>
+                    <button onclick="increment('sql')" class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300">+</button>
+                </div>
                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                     <div class="bg-secondary h-2 rounded-full" id="sqlProgressBar" style="width: 0%"></div>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4">
+            <!-- Project Hours Card -->
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col">
                 <h3 class="text-sm font-semibold text-gray-600 mb-2">Project Hours</h3>
-                <div class="text-2xl font-bold text-accent" id="projectProgress">0/32h</div>
+                 <div class="flex-grow flex items-center justify-between">
+                    <button onclick="decrement('project')" class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300">-</button>
+                    <div class="text-2xl font-bold text-accent" id="projectProgress">0/32h</div>
+                    <button onclick="increment('project')" class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300">+</button>
+                </div>
                 <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                     <div class="bg-accent h-2 rounded-full" id="projectProgressBar" style="width: 0%"></div>
                 </div>
             </div>
+            <!-- Current Phase Card -->
             <div class="bg-white rounded-lg shadow-md p-4">
                 <h3 class="text-sm font-semibold text-gray-600 mb-2">Current Phase</h3>
                 <div class="text-2xl font-bold text-purple-600" id="currentWeekNum">1</div>
@@ -71,20 +87,16 @@
         <!-- Tab Navigation -->
         <div class="bg-white rounded-lg shadow-md mb-6">
             <div class="flex flex-wrap border-b border-gray-200">
-                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium border-b-2 border-primary text-primary"
-                    data-tab="today">
+                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium border-b-2 border-primary text-primary" data-tab="today">
                     Today
                 </button>
-                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700"
-                    data-tab="week">
+                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="week">
                     Weekly
                 </button>
-                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700"
-                    data-tab="milestones">
+                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="milestones">
                     Milestones
                 </button>
-                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700"
-                    data-tab="progress">
+                <button class="tab-button px-4 sm:px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700" data-tab="progress">
                     Log
                 </button>
             </div>
@@ -129,11 +141,8 @@
             <div id="progress-tab" class="tab-content p-4 sm:p-6 hidden">
                 <h2 class="text-xl font-bold mb-4">Daily Progress Log</h2>
                 <div class="mb-4">
-                    <textarea id="progressInput"
-                        placeholder="What did you accomplish today? What blocked you? What's tomorrow's plan?"
-                        class="w-full p-3 border rounded-md h-24 resize-none"></textarea>
-                    <button onclick="saveLog()"
-                        class="mt-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    <textarea id="progressInput" placeholder="What did you accomplish today? What blocked you? What's tomorrow's plan?" class="w-full p-3 border rounded-md h-24 resize-none"></textarea>
+                    <button onclick="saveLog()" class="mt-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
                         Save Today's Log
                     </button>
                 </div>
@@ -144,25 +153,10 @@
         </div>
 
         <!-- Quick Actions -->
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-lg font-bold mb-4">Quick Actions</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <button onclick="markDSAComplete()"
-                    class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600">
-                    ✓ DSA Done
-                </button>
-                <button onclick="addSQLProblems()"
-                    class="bg-secondary text-white px-4 py-2 rounded-md hover:bg-green-600">
-                    + SQL
-                </button>
-                <button onclick="addProjectHours()"
-                    class="bg-accent text-white px-4 py-2 rounded-md hover:bg-yellow-600">
-                    + Project Hours
-                </button>
-                <button onclick="resetProgress()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
-                    Reset All
-                </button>
-            </div>
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+             <button onclick="resetProgress()" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                    Reset All Progress
+            </button>
         </div>
     </div>
 
@@ -249,7 +243,7 @@
                 progress = { ...defaultProgress, ...parsed };
                 progress.milestoneStatus = { ...defaultProgress.milestoneStatus, ...parsed.milestoneStatus };
             } else {
-                progress = JSON.parse(JSON.stringify(defaultProgress)); // Deep copy for initial state
+                progress = JSON.parse(JSON.stringify(defaultProgress));
             }
         }
 
@@ -260,8 +254,8 @@
 
         // --- UI UPDATE FUNCTIONS ---
         function updateProgressDisplay() {
-            document.getElementById('dsaProgress').textContent = `${progress.dsaProblems}/56`;
-            document.getElementById('dsaProgressBar').style.width = `${Math.min((progress.dsaProblems / 56) * 100, 100)}%`;
+            document.getElementById('dsaProgress').textContent = `${progress.dsaProblems}/150`;
+            document.getElementById('dsaProgressBar').style.width = `${Math.min((progress.dsaProblems / 150) * 100, 100)}%`;
 
             document.getElementById('sqlProgress').textContent = `${progress.sqlProblems}/50`;
             document.getElementById('sqlProgressBar').style.width = `${(progress.sqlProblems / 50) * 100}%`;
@@ -419,7 +413,7 @@
                 milestonesContainer.appendChild(milestoneElement);
             });
         }
-
+        
         function displayProgressHistory() {
             const historyContainer = document.getElementById('progressHistory');
             historyContainer.innerHTML = '';
@@ -442,6 +436,28 @@
         }
 
         // --- USER ACTIONS & EVENT HANDLERS ---
+        function increment(metric) {
+            if (metric === 'dsa') {
+                progress.dsaProblems++;
+            } else if (metric === 'sql') {
+                progress.sqlProblems = Math.min(progress.sqlProblems + 1, 50);
+            } else if (metric === 'project') {
+                progress.projectHours = Math.min(progress.projectHours + 0.5, 32);
+            }
+            saveProgressData();
+        }
+
+        function decrement(metric) {
+            if (metric === 'dsa') {
+                progress.dsaProblems = Math.max(0, progress.dsaProblems - 1);
+            } else if (metric === 'sql') {
+                progress.sqlProblems = Math.max(0, progress.sqlProblems - 1);
+            } else if (metric === 'project') {
+                progress.projectHours = Math.max(0, progress.projectHours - 0.5);
+            }
+            saveProgressData();
+        }
+        
         function toggleTask(taskId) {
             progress.completedTasks[taskId] = !progress.completedTasks[taskId];
             saveProgressData();
@@ -455,35 +471,11 @@
             displayMilestones();
         }
 
-        function markDSAComplete() {
-            progress.dsaProblems++;
-            saveProgressData();
-            showNotification('DSA problem marked complete! 🎉');
-        }
-
-        function addSQLProblems() {
-            const count = prompt('How many SQL problems did you complete?');
-            if (count && !isNaN(count)) {
-                progress.sqlProblems = Math.min(progress.sqlProblems + parseInt(count), 50);
-                saveProgressData();
-                showNotification(`Added ${count} SQL problems! 📊`);
-            }
-        }
-
-        function addProjectHours() {
-            const hours = prompt('How many project hours did you complete (e.g., 1.5)?');
-            if (hours && !isNaN(hours)) {
-                progress.projectHours = Math.min(progress.projectHours + parseFloat(hours), 32);
-                saveProgressData();
-                showNotification(`Added ${hours} project hours! 🚀`);
-            }
-        }
-
         function resetProgress() {
             if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
                 progress = JSON.parse(JSON.stringify(defaultProgress));
                 saveProgressData();
-                init(); // Re-initialize the app state and UI
+                init();
                 showNotification('Progress reset successfully.');
             }
         }
@@ -499,7 +491,7 @@
                 showNotification('Progress saved! 📝');
             }
         }
-
+        
         function showNotification(message) {
             const notification = document.createElement('div');
             notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-md shadow-lg z-50 transform transition-transform duration-300 translate-x-full';
@@ -536,10 +528,10 @@
             document.getElementById('weekSelector').value = Math.min(Math.floor(daysStudied / 7) + 1, 8);
 
             loadProgress();
-            updateProgressDisplay(); // **FIX**: Ensure UI updates on initial load
+            updateProgressDisplay();
             setupTabs();
             displayTodaySchedule();
-
+            
             document.getElementById('weekSelector').addEventListener('change', (e) => {
                 displayWeeklySchedule(e.target.value);
             });
